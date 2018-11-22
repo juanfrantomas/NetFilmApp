@@ -1,1 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Allerta+Stencil|Permanent+Marker');
 
+h1,h2,h3,h4,h5,h6, .title{
+    font-family: 'Allerta Stencil', sans-serif;
+}
+
+ion-title{
+    color: #32271d;
+    font-family: 'Permanent Marker', cursive;
+    font-size:1.5em;
+    font-weight:normal;
+}
+
+ion-card {
+    margin: 0.5em 0.5em;
+}
+
+ion-card-header {
+    padding: 0.5em;
+}
+
+ion-card-title {
+    font-weight: normal;
+    font-size: 1em;
+}

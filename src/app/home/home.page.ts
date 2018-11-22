@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProviderMovieService } from '../providers/provider-movie.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,10 @@ export class HomePage {
 
   protected movies;
   protected title:string;
-  constructor(public provider:ProviderMovieService) {
+  constructor(
+    public provider:ProviderMovieService,
+    private router: Router
+  ) {
     this.title = "NetFilmApp";
   }
 
@@ -19,10 +23,14 @@ export class HomePage {
     this.provider.getTrending()
     .subscribe(
       (data)=>{
-        this.movies = data;
+        var { results } = data;
+        this.movies = results;
       },
       (err)=>{console.log(err)}
     )
   }
 
+  goSingleMovie(idMovie){
+    this.router.navigate(['/singleMovie',idMovie])
+  }
 }

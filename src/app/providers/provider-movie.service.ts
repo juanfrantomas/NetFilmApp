@@ -5,6 +5,10 @@ import { environment } from '../../environments/environment';
 const API_URL = environment.apiUrl;
 const API_KEY = environment.apiKey;
 
+interface myData{
+  results: Object
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +18,11 @@ export class ProviderMovieService {
    }
 
   getTrending(){
-    return this.http.get(`${API_URL}trending/movie/day${API_KEY}`);
+    return this.http.get<myData>(`${API_URL}trending/movie/day${API_KEY}`);
+  }
+
+  getSingleMovie(id){
+    return this.http.get<myData>(`${API_URL}movie/${id}${API_KEY}`);
+    
   }
 }

@@ -1,19 +1,23 @@
-<ion-header>
-  <ion-toolbar>
+<ion-content>
+  <ion-toolbar translucent text-center>
     <ion-title>
-      {{this.title}}
+        {{this.title}}
     </ion-title>
   </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
- <ion-list>
-    <ion-card *ngFor="let movie of this.movies.results">
-        <ion-img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"></ion-img>
-        <ion-card-header>
-            <ion-card-subtitle>{{movie.vote_average}} / 10</ion-card-subtitle>
-            <ion-card-title>{{movie.title}}</ion-card-title>
-        </ion-card-header>
-    </ion-card>
- </ion-list>
+  
+  <ion-searchbar animated></ion-searchbar>
+  <div padding-start><h5>Trending</h5></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let movie of this.movies" size="4" no-padding>
+        <ion-card (click)="goSingleMovie(movie.id)">
+            <ion-img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"></ion-img>
+            <ion-card-header>
+                <ion-card-subtitle>{{movie.vote_average}} / 10</ion-card-subtitle>
+                <ion-card-title class="title">{{movie.title}}</ion-card-title>
+            </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
