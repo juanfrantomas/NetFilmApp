@@ -11,15 +11,35 @@ import { Router } from '@angular/router';
 export class HomePage {
 
   protected movies;
+  protected movieSearch;
   protected title:string;
+  protected stmovie;
   constructor(
     public provider:ProviderMovieService,
     private router: Router
   ) {
-    this.title = "NetFilmApp";
+    this.title = "N E T F L I M";
   }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.callInit();
+  }
+
+  goSingleMovie(idMovie){
+    this.router.navigate(['/singleMovie',idMovie])
+  }
+
+  searchMovie(event) {
+    if(!event.target.value) {
+      this.callInit();
+    } else {
+      if(this.stmovie) clearTimeout(this.stmovie);
+      this.stmovie = setTimeout(()=>{
+        this.callSearch(event.target.value);
+      },500);
+    }
+  }
+  callInit(){
     this.provider.getTrending()
     .subscribe(
       (data)=>{
@@ -30,7 +50,15 @@ export class HomePage {
     )
   }
 
-  goSingleMovie(idMovie){
-    this.router.navigate(['/singleMovie',idMovie])
+  callSearch(name){
+    this.provider.getSearchMovie(name)
+    .subscribe(
+      (data)=>{
+        var { results } = data;
+        this.movies = results;
+      },
+      (err)=>{console.log(err)}
+    )
   }
+  
 }

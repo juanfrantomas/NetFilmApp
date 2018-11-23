@@ -1,19 +1,22 @@
 <ion-toolbar>
     <ion-buttons sloat="start">
       <ion-back-button color=dark text defaultHref="/home"></ion-back-button>
-      <ion-title>{{movie.original_title}}</ion-title>
+      <ion-title class="title">{{movie.original_title}}</ion-title>
     </ion-buttons>
-    
 </ion-toolbar>
 
 <ion-content>
-  <ion-card>
-      <ion-img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"></ion-img>      
-      <ion-card-header>
-          <ion-card-title>{{movie.original_title}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-          <p>{{movie.overview}}</p>
-      </ion-card-content>
-  </ion-card>
+    <div [ngStyle]="{ 'background': 'url(https://image.tmdb.org/t/p/original'+movie.backdrop_path+') no-repeat center center fixed','background-size':'cover'}">
+        <ion-img class="imgSingle" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"></ion-img>   
+    </div>   
+        <ion-card class="ionCardSingle">
+            <ion-card-header>
+                <ion-card-title class="titleSingle">{{movie.original_title}}</ion-card-title>
+                <ion-card-subtitle>{{movie.release_date.substring(0,4)}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <p>{{movie.overview}}</p>
+            </ion-card-content>
+        </ion-card>
 </ion-content>
+

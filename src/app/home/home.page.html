@@ -5,8 +5,8 @@
     </ion-title>
   </ion-toolbar>
   
-  <ion-searchbar animated></ion-searchbar>
-  <div padding-start><h5>Trending</h5></div>
+  <ion-searchbar animated [(ngModel)]="this.movieSearch" (keyup)="this.searchMovie($event)" ></ion-searchbar>
+  <div padding-start><h5>{{(this.movieSearch)? 'Searching '+this.movieSearch:'Trending' }}</h5></div>
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let movie of this.movies" size="4" no-padding>

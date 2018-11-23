@@ -22,7 +22,10 @@ export class ProviderMovieService {
   }
 
   getSingleMovie(id){
-    return this.http.get<myData>(`${API_URL}movie/${id}${API_KEY}`);
-    
+    return this.http.get<myData>(`${API_URL}movie/${id}${API_KEY}`); 
+  }
+
+  getSearchMovie(name) {
+    return this.http.get<myData>(`${API_URL}search/movie${API_KEY}&query=${name}`);
   }
 }
