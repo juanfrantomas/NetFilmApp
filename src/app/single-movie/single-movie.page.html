@@ -1,11 +1,11 @@
 <ion-toolbar>
     <ion-buttons sloat="start">
       <ion-back-button color=dark text defaultHref="/home"></ion-back-button>
-      <ion-title class="title">{{movie.original_title}}</ion-title>
+      <ion-title class="title" *ngIf="movie">{{movie.original_title}}</ion-title>
     </ion-buttons>
 </ion-toolbar>
 
-<ion-content>
+<ion-content *ngIf="movie">
     <div [ngStyle]="{ 'background': 'url(https://image.tmdb.org/t/p/original'+movie.backdrop_path+') no-repeat center center fixed','background-size':'cover'}">
         <ion-img class="imgSingle" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"></ion-img>   
     </div>   

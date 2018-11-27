@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  protected movies;
-  protected movieSearch;
-  protected title:string;
-  protected stmovie;
+  movies;
+  movieSearch;
+  title:string;
+  stmovie;
   constructor(
-    public provider:ProviderMovieService,
+    private provider:ProviderMovieService,
     private router: Router
   ) {
     this.title = "N E T F L I M";
@@ -43,7 +43,7 @@ export class HomePage {
     this.provider.getTrending()
     .subscribe(
       (data)=>{
-        var { results } = data;
+        let { results } = data;
         this.movies = results;
       },
       (err)=>{console.log(err)}
